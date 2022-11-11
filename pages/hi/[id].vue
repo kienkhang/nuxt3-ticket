@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import path from 'path';
+
 const route = useRoute()
+const router = useRouter()
 const user = useUserStore()
 const name = route.params.id
 
@@ -10,6 +13,14 @@ watchEffect(() => {
 definePageMeta({
   layout: 'home',
 })
+
+const title ='Những Thành Phố Mơ Màng 2022'
+const description = 'Những Thành Phố Mơ Màng - Một show âm nhạc không còn quá xa lạ với các bạn trẻ yêu thích dòng nhạc Indie và Underground ở Việt Nam.'
+const imageLink = 'https://images.tkbcdn.com/1/1560/600/Upload/eventcover/2022/10/31/70C7B5.jpg'
+
+const handleGotoTicket = ()=>{
+  router.push({path:'/meta/2',query:{t:title,d:description,i:imageLink}})
+}
 </script>
 
 <template>
@@ -21,7 +32,7 @@ definePageMeta({
     <div text-xl>
       {{ name }}!
     </div>
-
+    <button @click="handleGotoTicket">Go to ticket</button>
     <template v-if="user.otherNames.length">
       <p text-sm my-4>
         <span op-50>Also as known as:</span>
